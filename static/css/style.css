@@ -1,0 +1,99 @@
+:root {
+  color-scheme: dark;
+  --bg: #0e0e0f;
+  --text: #fcf7ef;
+  --muted: #aaa39b;
+  --amber: #efb05b;
+  --copper: #d57f4c;
+  --border: rgba(241,206,166,.15);
+}
+*,*::before,*::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--text); font-family: 'Segoe UI',system-ui,Arial,sans-serif; overflow-x: hidden; }
+.ambient { position: fixed; pointer-events:none; z-index:-1; filter: blur(7px); }
+.ambient-left { width:700px; height:700px; top:-370px; left:-290px; background:radial-gradient(circle,rgba(175,82,31,.17),transparent 70%); }
+.ambient-right { width:850px; height:850px; bottom:-480px; right:-380px; background:radial-gradient(circle,rgba(167,102,44,.12),transparent 70%); }
+.site-shell { max-width: 1240px; padding:0 24px; }
+.site-header { min-height: 105px; border-bottom:1px solid rgba(239,213,187,.09); }
+.brand-symbol { flex:none; width:41px; height:41px; display:grid;place-items:center; background:rgba(229,153,72,.10); border:1px solid rgba(243,179,99,.20); border-radius:12px; }
+.symbol-disc { position:relative; display:block; width:25px; height:25px; border-radius:50%; background:repeating-radial-gradient(circle,#221910 0px,#221910 2px,#9c6a38 3px,#261e18 4px);box-shadow:0 0 0 1px #a96f3c; }
+.symbol-disc::before { content:''; position:absolute; border-radius:50%; background:#e3a04e; width:10px;height:10px;left:7.5px;top:7.5px; }
+.symbol-disc i { position:absolute; z-index:1; left:11px;top:11px; background:#2b2118; width:3px;height:3px;border-radius:50%; }
+.brand-name { font:800 21px/1 'Trebuchet MS',sans-serif; letter-spacing:.08em; }
+.brand-name span {color:var(--amber)}
+.brand-kicker { margin-top:4px; font-size:9px; letter-spacing:.235em; font-weight:800; color:#98908c; }
+.header-info {white-space:nowrap;}
+.edition {font-size:10px;color:#958a81;font-weight:800;letter-spacing:.18em;}
+.archive-pill {border-radius:22px;border:1px solid rgba(250,186,102,.22);background:rgba(179,104,42,.08);color:#f4c68b;padding:9px 13px;font-weight:800;font-size:9px;letter-spacing:.11em;}
+.archive-led {display:inline-block;height:7px;width:7px;background:var(--amber);border-radius:50%;margin-right:8px;box-shadow:0 0 12px rgba(239,176,91,.6);}
+.hero-layout {padding-top:65px;padding-bottom:27px;}
+.hero-column {position:relative;padding-right:30px;}
+.eyebrow {display:flex; align-items:center;gap:11px;color:#f1c18a;letter-spacing:.165em;font-weight:800;font-size:10px;}
+.eyebrow-rule {height:2px;width:24px;background:var(--amber);border-radius:5px;}
+.eyebrow-slash {color:#8a6951;font-weight:600;}
+h1,h2,h3 {font-family:'Trebuchet MS',sans-serif;}
+h1 {font-size:clamp(46px,5.15vw,74px);line-height:1.07;letter-spacing:-.06em;font-weight:700;margin:27px 0 21px;}
+h1 em {font-style:normal;color:var(--amber);}
+.hero-description {max-width:468px;color:#b8afa5;font-size:15px;line-height:1.85;}
+.collection-marks {display:flex;gap:9px;flex-wrap:wrap;margin-top:28px;}
+.collection-marks span {font-size:10px;color:#c8b9a8;border-radius:22px;padding:9px 12px;border:1px solid rgba(231,188,139,.20);background:rgba(255,255,255,.02);font-weight:600;letter-spacing:.035em;}
+.mark-dot {display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:7px;background:#edab5e;}
+.visual-stage {position:relative;min-height:290px;overflow:hidden;margin-top:29px;}
+.stage-halo {position:absolute;left:35px;bottom:-65px;width:440px;height:230px;border-radius:50%;filter:blur(65px);background:#8c491e;opacity:.22;}
+.vinyl-disc {position:absolute;z-index:1;top:4px;left:196px;width:275px;height:275px;border-radius:50%;border:1px solid #38312c;box-shadow:12px 22px 42px rgba(0,0,0,.6);background:repeating-radial-gradient(circle at 50% 50%,#121212 0,#121212 3px,#292829 4px,#131313 5px,#222123 6px);display:grid;place-items:center;}
+.vinyl-disc::before {content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 10deg,transparent 0deg,rgba(228,181,126,.16) 45deg,transparent 88deg,transparent 182deg,rgba(226,179,119,.12) 242deg,transparent 295deg);}
+.vinyl-center {position:relative;z-index:2;width:105px;height:105px;border-radius:50%;display:flex; flex-direction:column;align-items:center;justify-content:center;border:5px solid #161515;background:linear-gradient(135deg,#d99b50,#8a4b30);color:#261c15;}
+.vinyl-center span {font:800 16px/.9 'Trebuchet MS';letter-spacing:.06em;}.vinyl-center small {margin-top:5px;font-size:8px;font-weight:800;letter-spacing:.08em;}
+.vinyl-center i {width:8px;height:8px;background:#241c17;border-radius:50%;margin-top:8px;box-shadow:0 0 0 2px rgba(232,193,131,.45)}
+.album-sleeve {position:absolute;z-index:2;top:21px;left:35px;width:259px;height:245px;box-shadow:0 23px 43px rgba(0,0,0,.48);background:linear-gradient(140deg,rgba(244,174,88,.92),rgba(187,96,49,.95) 52%,#5e3428);border:1px solid rgba(255,213,169,.35);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:18px 19px;transform:rotate(-6deg);}
+.album-sleeve::before {content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0,transparent 3px,rgba(255,241,218,.042) 4px);pointer-events:none;}
+.album-sleeve::after {content:'';position:absolute;right:-65px;bottom:-75px;width:220px;height:220px;border-radius:50%;border:36px solid rgba(35,26,25,.12);box-shadow:0 0 0 26px rgba(255,238,213,.05);}
+.sleeve-stamp {position:relative;z-index:1;width:31px;height:31px;border:1px solid rgba(54,32,22,.7);border-radius:50%;display:grid;place-items:center;font:800 16px 'Trebuchet MS';color:#38291f;}.sleeve-stamp span{color:#f9e3bc;}
+.sleeve-text {position:relative;z-index:1;display:flex;flex-direction:column;color:#251e1c;font-family:'Trebuchet MS';letter-spacing:-.06em;line-height:.85;}
+.sleeve-text>span {font-size:14px;letter-spacing:.2em;font-weight:800;margin-bottom:5px;}
+.sleeve-text strong {font-size:40px;font-weight:800;}.sleeve-text strong span{color:#f9e5c9;}
+.sleeve-bottom {position:relative;z-index:1;display:flex;justify-content:space-between;font-size:8px;font-weight:800;letter-spacing:.10em;color:#30231c;}
+.collectible-tag {position:absolute;z-index:3;left:254px;bottom:13px;display:flex;gap:12px;align-items:center;padding:12px 14px;border:1px solid rgba(252,187,116,.29);border-radius:12px;background:rgba(40,29,25,.93);box-shadow:0 15px 35px rgba(0,0,0,.38);backdrop-filter:blur(9px);min-width:201px;}
+.tag-icon {display:grid;place-items:center;width:37px;height:37px;border-radius:10px;background:rgba(242,172,92,.15);color:#f3bc7c;font-size:21px;}
+.collectible-tag strong,.collectible-tag small {display:block;font-size:11px;}.collectible-tag strong{color:#fff2dd}.collectible-tag small{margin-top:2px;color:#c1ac96}
+.vertical-note {position:absolute;right:0;top:56px;writing-mode:vertical-rl;color:#837064;font-size:9px;font-weight:800;letter-spacing:.23em;}
+.app-column {display:flex;align-items:stretch;}
+.explorer-panel {width:100%;padding:34px;border-radius:24px;border:1px solid var(--border);background:linear-gradient(147deg,rgba(37,30,27,.97),rgba(23,21,22,.96) 64%);box-shadow:0 24px 80px rgba(0,0,0,.27);}
+.panel-top {margin-bottom:36px;gap:12px;}.panel-kicker {font-size:10px;letter-spacing:.18em;font-weight:800;color:#e6b075;}
+.panel-top h2 {font-weight:700;font-size:27px;line-height:1.25;letter-spacing:-.045em;margin:9px 0 0;}.panel-top h2 span{color:var(--amber)}
+.panel-number {font:600 11px 'Trebuchet MS';color:#85776d;white-space:nowrap;}
+.field-label {display:block;margin-bottom:12px;color:#beb2a6;font-size:10px;font-weight:800;letter-spacing:.14em;}
+.select-wrap {position:relative;}.select-marker {position:absolute;left:18px;top:13px;pointer-events:none;color:#efb777;font-size:19px;}
+.record-select {width:100%;min-height:55px;border-radius:11px;padding:10px 42px 10px 48px;color:#fff6ea;font-size:14px;background-color:#292323;border:1px solid rgba(246,191,135,.31);}
+.record-select:focus {color:#fff9f0;background-color:#302723;border-color:#e8ad70;box-shadow:0 0 0 .2rem rgba(238,167,84,.17);}
+.record-select:disabled {opacity:.55;}.record-select option {color:#fff6ec;background:#292323;}
+.record-select {--bs-form-select-bg-img:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23f1c391' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");}
+.db-alert {margin-top:12px;border:1px solid rgba(235,128,119,.4);border-radius:10px;padding:12px 14px;background:rgba(145,57,45,.16);color:#ffd1c4;font-size:12px;line-height:1.6;}
+.record-card {margin-top:26px;padding:24px;border-radius:18px;background:linear-gradient(160deg,rgba(160,101,52,.13),rgba(98,66,42,.04) 70%);border:1px solid rgba(234,185,124,.20);}
+.card-overline {font-size:9px;letter-spacing:.13em;font-weight:800;color:#baa99a;}
+.side-label {color:#f0b77d;font:700 10px 'Trebuchet MS';letter-spacing:.09em;}.side-label span{font-size:9px;margin-left:7px;}
+.album-identity {padding:26px 0;min-height:126px;}
+.album-avatar {flex:none;width:68px;height:68px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,#ca8546,#6c3e32);border:1px solid rgba(242,179,105,.37);box-shadow:inset 0 0 0 2px rgba(255,244,226,.04);}
+.avatar-disc {position:relative;display:block;height:42px;width:42px;border-radius:50%;background:repeating-radial-gradient(circle,#222023 0,#222023 2px,#43312b 3px,#1c1b1b 4px);border:1px solid rgba(250,205,151,.4);}
+.avatar-disc::before {content:'';position:absolute;inset:13px;border-radius:50%;background:#e7b46e;}.avatar-disc i{position:absolute;z-index:1;background:#352522;border-radius:50%;height:4px;width:4px;left:18px;top:18px;}
+.identity-info {min-width:0;}.identity-caption {font-size:9px;font-weight:800;letter-spacing:.15em;color:#aa9788;}
+.identity-info h3 {font-size:22px;letter-spacing:-.045em;font-weight:700;line-height:1.23;margin:5px 0 3px;overflow-wrap:anywhere;}.identity-hint {font-size:11px;color:#b5a08f;}
+.detail-grid {display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.detail-item {min-width:0;min-height:88px;border-radius:11px;padding:14px 13px;background:rgba(12,12,13,.34);border:1px solid rgba(241,192,138,.10);}
+.detail-label {color:#c3a68b;font-size:9px;font-weight:800;letter-spacing:.11em;}.detail-label span{color:#e8b06d;margin-right:5px;font-size:12px;}
+.detail-value {margin-top:11px;font:700 17px/1.3 'Trebuchet MS';overflow-wrap:anywhere;}
+.card-footerline {margin-top:21px;padding-top:19px;border-top:1px solid rgba(238,197,153,.13);font-size:9px;font-weight:800;letter-spacing:.08em;color:#928376;}
+.tiny-dot {display:inline-block;vertical-align:1px;height:6px;width:6px;border-radius:50%;background:#e1ae72;box-shadow:0 0 9px rgba(236,168,90,.48);margin-right:5px;}
+.card-footerline span:last-child {color:#e0b17e;text-align:right;}
+.panel-help {min-height:19px;color:#b3a293;font-size:11px;text-align:center;margin:21px 0 24px;line-height:1.7;}
+.stack-line {border-top:1px solid rgba(237,191,143,.11);padding-top:23px;color:#907e70;font-size:10px;letter-spacing:.12em;font-weight:800;}.stack-line b{color:#6d5847;}
+.site-footer {padding:23px 0 30px;border-top:1px solid rgba(242,214,184,.09);color:#84776e;font-size:10px;letter-spacing:.04em;}.footer-sep{padding:0 8px;color:#c89764;}
+@media (min-width:992px){.hero-column{padding-top:20px}.app-column{padding-left:25px}}
+@media (max-width:991px){.hero-layout{padding-top:35px}.hero-column{padding-right:12px}.visual-stage{min-height:270px}.app-column{margin-top:10px}.vertical-note{right:6px}}
+@media (max-width:600px){
+  .site-shell{padding:0 16px}.site-header{min-height:82px}.archive-pill{padding:7px 10px;font-size:8px}.brand-name{font-size:19px}.brand-kicker{font-size:8px}.hero-layout{padding-top:32px}h1{font-size:clamp(41px,9.3vw,53px)}
+  .hero-description{font-size:14px}.visual-stage{min-height:238px;margin-top:25px}.album-sleeve{left:16px;top:23px;width:209px;height:194px;padding:13px}.sleeve-text strong{font-size:31px}.sleeve-text>span{font-size:12px}.vinyl-disc{width:217px;height:217px;left:156px;top:9px}.vinyl-center{height:84px;width:84px}.vinyl-center span{font-size:14px}.collectible-tag{left:172px;bottom:0;min-width:140px;padding:9px;gap:7px}.tag-icon{height:29px;width:29px;font-size:16px}.collectible-tag strong,.collectible-tag small{font-size:9px}.vertical-note{display:none}
+  .explorer-panel{padding:22px 17px;border-radius:18px}.panel-top{margin-bottom:25px}.panel-top h2{font-size:24px}.record-card{padding:18px 15px}.detail-grid{gap:8px}.detail-item{padding:12px 10px}.detail-value{font-size:15px}.album-avatar{width:59px;height:59px}.identity-info h3{font-size:19px}.card-footerline{font-size:8px}.site-footer{font-size:9px}
+}
+@media (max-width:390px){.detail-grid{grid-template-columns:1fr}.collectible-tag{left:159px}.album-sleeve{width:194px}.vinyl-disc{left:140px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

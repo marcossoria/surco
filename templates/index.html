@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e0e0f">
+  <meta name="description" content="Surco: explorador de discos y sellos. Sistemas Operativos II, TPN.º 4.">
+  <title>SURCO. | Discos y sellos</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-left" aria-hidden="true"></div>
+  <div class="ambient ambient-right" aria-hidden="true"></div>
+
+  <div class="container-xl site-shell">
+    <header class="site-header d-flex align-items-center justify-content-between">
+      <div class="brand d-flex gap-3 align-items-center">
+        <div class="brand-symbol" aria-hidden="true"><span class="symbol-disc"><i></i></span></div>
+        <div class="brand-words"><div class="brand-name">SURCO<span>.</span></div><div class="brand-kicker">THE RECORD ARCHIVE</div></div>
+      </div>
+      <div class="header-info d-flex gap-3 align-items-center">
+        <span class="edition d-none d-sm-inline">EDICIÓN 2026</span>
+        <span class="archive-pill"><span class="archive-led"></span> ARCHIVO DIGITAL</span>
+      </div>
+    </header>
+
+    <main class="row g-4 align-items-stretch hero-layout">
+      <section class="col-lg-6 hero-column">
+        <div class="eyebrow"><span class="eyebrow-rule"></span> SISTEMAS OPERATIVOS II <span class="eyebrow-slash">/</span> TPN° 4</div>
+        <h1>Hay discos<br>que dejan <em>huella.</em></h1>
+        <p class="hero-description">Grandes canciones, portadas inolvidables y sellos que hicieron historia. Explorá nuestro pequeño archivo discográfico.</p>
+
+        <div class="collection-marks" aria-label="Etiquetas de archivo">
+          <span><i class="mark-dot"></i> ARCHIVO 2026</span><span>VINILO &amp; HISTORIA</span><span>33⅓ RPM</span>
+        </div>
+
+        <div class="visual-stage" aria-hidden="true">
+          <div class="stage-halo"></div>
+          <div class="album-sleeve">
+            <div class="sleeve-stamp">S<span>.</span></div>
+            <div class="sleeve-text"><span>THE</span><strong>RECORD</strong><strong>ROOM<span>.</span></strong></div>
+            <div class="sleeve-bottom"><span>ANALOG STORIES</span><span>VOL. 26 / 01</span></div>
+          </div>
+          <div class="vinyl-disc"><div class="vinyl-center"><span>SURCO.</span><small>33⅓ RPM</small><i></i></div></div>
+          <div class="collectible-tag"><span class="tag-icon">♫</span><div><strong>El sonido perdura.</strong><small>El archivo también.</small></div></div>
+          <div class="vertical-note">SIDE B · RECORDS COLLECTION</div>
+        </div>
+      </section>
+
+      <section class="col-lg-6 app-column" aria-label="Explorador de discos">
+        <div class="explorer-panel">
+          <div class="panel-top d-flex justify-content-between align-items-start">
+            <div><span class="panel-kicker">EXPLORADOR INTERACTIVO</span><h2>Descubrí los discos<span>.</span></h2></div>
+            <span class="panel-number">02 / 02</span>
+          </div>
+
+          <label for="disco-select" class="field-label">ELEGÍ UN DISCO</label>
+          <div class="select-wrap">
+            <span class="select-marker" aria-hidden="true">◉</span>
+            <select id="disco-select" data-api-base="{{ url_for('inicio') }}api/discos/" class="form-select record-select" {% if not db_disponible or not discos %}disabled{% endif %}>
+              <option value="">Seleccioná un álbum...</option>
+              {% for disco in discos %}
+              <option value="{{ disco.id_disco }}">{{ disco.nombre }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          {% if not db_disponible %}
+          <div class="db-alert" role="alert">No pudimos conectar con PostgreSQL. Comprobá el servicio e intentá actualizar la página.</div>
+          {% elif not discos %}
+          <div class="db-alert" role="status">No hay discos disponibles en la base de datos.</div>
+          {% endif %}
+
+          <article class="record-card" aria-live="polite" aria-label="Ficha del disco seleccionado">
+            <div class="card-overline d-flex justify-content-between align-items-center">
+              <span>FICHA DISCOGRÁFICA</span><span class="side-label">SIDE B <span>●</span></span>
+            </div>
+            <div class="album-identity d-flex align-items-center gap-3">
+              <div class="album-avatar" aria-hidden="true"><span class="avatar-disc"><i></i></span></div>
+              <div class="identity-info"><span class="identity-caption">DISCO SELECCIONADO</span><h3 id="album-name">Sin seleccionar</h3><span class="identity-hint" id="album-hint">Elegí un título para explorar</span></div>
+            </div>
+            <div class="detail-grid">
+              <div class="detail-item"><div class="detail-label"><span aria-hidden="true">◷</span> AÑO DE EDICIÓN</div><div class="detail-value" id="album-year">—</div></div>
+              <div class="detail-item"><div class="detail-label"><span aria-hidden="true">◆</span> SELLO DISCOGRÁFICO</div><div class="detail-value" id="album-label">—</div></div>
+            </div>
+            <div class="card-footerline d-flex align-items-center justify-content-between gap-2">
+              <span><i class="tiny-dot"></i> DATOS EN POSTGRESQL</span>
+              <span id="query-state" role="status">LISTO PARA EXPLORAR</span>
+            </div>
+          </article>
+
+          <p class="panel-help" id="panel-help">Los datos se consultan en tiempo real a través de Flask y PostgreSQL.</p>
+          <div class="stack-line d-flex justify-content-center align-items-center flex-wrap gap-2"><span>FLASK</span><b>+</b><span>POSTGRESQL</span><b>+</b><span>LINUX</span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer d-flex flex-wrap gap-2 justify-content-between"><span>© 2026 · Sistemas Operativos II</span><span>Ingeniería en Informática <span class="footer-sep">/</span> Proyecto académico</span></footer>
+  </div>
+</body>
+</html>
